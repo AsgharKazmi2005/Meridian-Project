@@ -1,0 +1,16 @@
+{
+  "squad": "LI-2",
+  "instance": "C2-infeasible",
+  "feasible": false,
+  "diagnosis": "Full hard-constraint model is infeasible after St. Augustine capacity drops from 3 to 2 per block; eligibility, specialty coverage, distinct sites, and block capacity cannot all be satisfied.",
+  "proposed_relaxations": [
+    {
+      "change": "Restore one St. Augustine preceptor slot in each block after site approval.",
+      "cost": "Site funds and supervises one additional placement per block; amount to be confirmed."
+    },
+    {
+      "change": "Add an approved substitute site with needed specialties and adequate capacity, then resolve.",
+      "cost": "Registrar coordinates placements; affected students may bear additional travel, to be measured."
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "squad": "LI-2",
+  "instance": "C2-primary",
+  "fairness_objective": {
+    "name": "minimax_student_travel",
+    "description": "Minimize the largest two-block travel borne by any single student.",
+    "reported_value": 74
+  },
+  "reported_total_travel_minutes": 575,
+  "assignment": {
+    "s01": {
+      "block_1": {
+        "site": "riverside",
+        "specialty": "family_medicine"
+      },
+      "block_2": {
+        "site": "harborview",
+        "specialty": "pediatrics"
+      }
+    },
+    "s02": {
+      "block_1": {
+        "site": "riverside",
+        "specialty": "family_medicine"
+      },
+      "block_2": {
+        "site": "harborview",
+        "specialty": "pediatrics"
+      }
+    },
+    "s03": {
+      "block_1": {
+        "site": "st_augustine",
+        "specialty": "family_medicine"
+      },
+      "block_2": {
+        "site": "riverside",
+        "specialty": "pediatrics"
+      }
+    },
+    "s04": {
+      "block_1": {
+        "site": "northgate",
+        "specialty": "rehabilitation"
+      },
+      "block_2": {
+        "site": "st_augustine",
+        "specialty": "geriatrics"
+      }
+    },
+    "s05": {
+      "block_1": {
+        "site": "st_augustine",
+        "specialty": "geriatrics"
+      },
+      "block_2": {
+        "site": "northgate",
+        "specialty": "rehabilitation"
+      }
+    },
+    "s06": {
+      "block_1": {
+        "site": "northgate",
+        "specialty": "rehabilitation"
+      },
+      "block_2": {
+        "site": "st_augustine",
+        "specialty": "geriatrics"
+      }
+    },
+    "s07": {
+      "block_1": {
+        "site": "northgate",
+        "specialty": "rehabilitation"
+      },
+      "block_2": {
+        "site": "riverside",
+        "specialty": "pediatrics"
+      }
+    },
+    "s08": {
+      "block_1": {
+        "site": "harborview",
+        "specialty": "rehabilitation"
+      },
+      "block_2": {
+        "site": "riverside",
+        "specialty": "pediatrics"
+      }
+    },
+    "s09": {
+      "block_1": {
+        "site": "harborview",
+        "specialty": "pediatrics"
+      },
+      "block_2": {
+        "site": "northgate",
+        "specialty": "rehabilitation"
+      }
+    },
+    "s10": {
+      "block_1": {
+        "site": "st_augustine",
+        "specialty": "geriatrics"
+      },
+      "block_2": {
+        "site": "riverside",
+        "specialty": "family_medicine"
+      }
+    },
+    "s11": {
+      "block_1": {
+        "site": "riverside",
+        "specialty": "family_medicine"
+      },
+      "block_2": {
+        "site": "st_augustine",
+        "specialty": "geriatrics"
+      }
+    },
+    "s12": {
+      "block_1": {
+        "site": "riverside",
+        "specialty": "family_medicine"
+      },
+      "block_2": {
+        "site": "northgate",
+        "specialty": "geriatrics"
+      }
+    }
+  }
+}

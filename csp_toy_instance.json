@@ -1,0 +1,869 @@
+{
+  "schema_version": "2.0",
+  "asset": "csp_toy_instance",
+  "course": "CSCI 410 / CSCI 755 Artificial Intelligence",
+  "sprint": "SP-2, CSP Formulation and Solve for a Toy C2 Instance",
+  "client": "Meridian College of Health Professions",
+  "generated": "2026-09-18",
+  "problem": "Assign each student to one clinical site in each of two rotation blocks. All hard constraints must hold. Among feasible schedules, prefer the one that scores best on a soft fairness objective that your squad defines.",
+  "variables": "One variable per student per block, so 24 variables in the primary instance. The domain of each is the set of site ids. Other formulations are acceptable and the formulation sheet is where you defend yours.",
+  "travel_limit_minutes": 45,
+  "hard_constraints": [
+    {
+      "type": "specialty_coverage",
+      "rule": "Across the two blocks a student completes both of the specialties in required_specialties, one per block. The site assigned in a block must list that block's specialty."
+    },
+    {
+      "type": "no_repeat_site",
+      "rule": "A student is not assigned the same site in both blocks."
+    },
+    {
+      "type": "site_capacity",
+      "rule": "Within a block, the number of students at a site must not exceed capacity_per_block."
+    },
+    {
+      "type": "prerequisite_completion",
+      "rule": "If a site has requires_prerequisite, the student's completed_prerequisites must contain it."
+    },
+    {
+      "type": "licensure_hour_minimum",
+      "rule": "The student's licensure_hours must be at least the site's min_licensure_hours."
+    },
+    {
+      "type": "travel_limit",
+      "rule": "No single placement may exceed travel_limit_minutes for that student."
+    }
+  ],
+  "soft_objective": {
+    "note": "Deliberately not specified. Deliverable 1 asks you to define at least one soft fairness objective and state it formally. travel_minutes below is the data most objectives will use.",
+    "worked_examples_of_the_shape": [
+      "Utilitarian: minimize the sum over students of their two-block travel.",
+      "Egalitarian: minimize the largest two-block travel borne by any single student."
+    ],
+    "warning": "These two do not agree on this instance. A schedule that is optimal under one is not optimal under the other. Deliverable 1 asks which one Meridian should be asked to endorse, and why."
+  },
+  "notes": [
+    "Every hard constraint above must be checked by code, not by inspection.",
+    "meridian_position claims are not in this file on purpose. Ask in the Week 3 working session which constraints are genuinely non-negotiable.",
+    "The lecture fixture at the end is a demonstration instance, not an SP-2 deliverable."
+  ],
+  "instances": [
+    {
+      "id": "C2-primary",
+      "role": "SP-2 solve target",
+      "blocks": [
+        "block_1",
+        "block_2"
+      ],
+      "sites": [
+        {
+          "id": "riverside",
+          "name": "Riverside Family Health",
+          "specialties": [
+            "family_medicine",
+            "pediatrics"
+          ],
+          "capacity_per_block": 4,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 0
+        },
+        {
+          "id": "northgate",
+          "name": "Northgate Rehabilitation Center",
+          "specialties": [
+            "rehabilitation",
+            "geriatrics"
+          ],
+          "capacity_per_block": 3,
+          "requires_prerequisite": "ANAT 220",
+          "min_licensure_hours": 120
+        },
+        {
+          "id": "harborview",
+          "name": "Harborview Pediatric Associates",
+          "specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "capacity_per_block": 3,
+          "requires_prerequisite": "PEDS 310",
+          "min_licensure_hours": 140
+        },
+        {
+          "id": "st_augustine",
+          "name": "St. Augustine Health Center",
+          "specialties": [
+            "family_medicine",
+            "geriatrics"
+          ],
+          "capacity_per_block": 3,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 90
+        }
+      ],
+      "students": [
+        {
+          "id": "s01",
+          "name": "Alvarez, R.",
+          "track": "A",
+          "required_specialties": [
+            "family_medicine",
+            "pediatrics"
+          ],
+          "licensure_hours": 176,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s02",
+          "name": "Boateng, K.",
+          "track": "A",
+          "required_specialties": [
+            "family_medicine",
+            "pediatrics"
+          ],
+          "licensure_hours": 148,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s03",
+          "name": "Chen, L.",
+          "track": "A",
+          "required_specialties": [
+            "family_medicine",
+            "pediatrics"
+          ],
+          "licensure_hours": 96,
+          "completed_prerequisites": [
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s04",
+          "name": "Duval, M.",
+          "track": "B",
+          "required_specialties": [
+            "rehabilitation",
+            "geriatrics"
+          ],
+          "licensure_hours": 132,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s05",
+          "name": "Egan, P.",
+          "track": "B",
+          "required_specialties": [
+            "rehabilitation",
+            "geriatrics"
+          ],
+          "licensure_hours": 188,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s06",
+          "name": "Farouk, N.",
+          "track": "B",
+          "required_specialties": [
+            "rehabilitation",
+            "geriatrics"
+          ],
+          "licensure_hours": 136,
+          "completed_prerequisites": [
+            "ANAT 220"
+          ]
+        },
+        {
+          "id": "s07",
+          "name": "Gutierrez, A.",
+          "track": "C",
+          "required_specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "licensure_hours": 168,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s08",
+          "name": "Haddad, S.",
+          "track": "C",
+          "required_specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "licensure_hours": 168,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s09",
+          "name": "Iwu, C.",
+          "track": "C",
+          "required_specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "licensure_hours": 192,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s10",
+          "name": "Jensen, T.",
+          "track": "D",
+          "required_specialties": [
+            "family_medicine",
+            "geriatrics"
+          ],
+          "licensure_hours": 112,
+          "completed_prerequisites": [
+            "ANAT 220"
+          ]
+        },
+        {
+          "id": "s11",
+          "name": "Kowalski, D.",
+          "track": "D",
+          "required_specialties": [
+            "family_medicine",
+            "geriatrics"
+          ],
+          "licensure_hours": 156,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s12",
+          "name": "Lin, W.",
+          "track": "D",
+          "required_specialties": [
+            "family_medicine",
+            "geriatrics"
+          ],
+          "licensure_hours": 144,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        }
+      ],
+      "travel_minutes": {
+        "s01": {
+          "riverside": 22,
+          "northgate": 31,
+          "harborview": 32,
+          "st_augustine": 16
+        },
+        "s02": {
+          "riverside": 20,
+          "northgate": 10,
+          "harborview": 13,
+          "st_augustine": 16
+        },
+        "s03": {
+          "riverside": 23,
+          "northgate": 40,
+          "harborview": 58,
+          "st_augustine": 33
+        },
+        "s04": {
+          "riverside": 9,
+          "northgate": 37,
+          "harborview": 39,
+          "st_augustine": 37
+        },
+        "s05": {
+          "riverside": 52,
+          "northgate": 39,
+          "harborview": 44,
+          "st_augustine": 20
+        },
+        "s06": {
+          "riverside": 33,
+          "northgate": 13,
+          "harborview": 39,
+          "st_augustine": 22
+        },
+        "s07": {
+          "riverside": 9,
+          "northgate": 25,
+          "harborview": 41,
+          "st_augustine": 34
+        },
+        "s08": {
+          "riverside": 38,
+          "northgate": 61,
+          "harborview": 15,
+          "st_augustine": 24
+        },
+        "s09": {
+          "riverside": 14,
+          "northgate": 12,
+          "harborview": 32,
+          "st_augustine": 32
+        },
+        "s10": {
+          "riverside": 14,
+          "northgate": 11,
+          "harborview": 29,
+          "st_augustine": 23
+        },
+        "s11": {
+          "riverside": 13,
+          "northgate": 51,
+          "harborview": 41,
+          "st_augustine": 21
+        },
+        "s12": {
+          "riverside": 45,
+          "northgate": 17,
+          "harborview": 12,
+          "st_augustine": 42
+        }
+      }
+    },
+    {
+      "id": "C2-infeasible",
+      "role": "Fixture for deliverable 3, the infeasibility note",
+      "change_from_primary": "St. Augustine Health Center loses one preceptor slot per block, so capacity_per_block drops from 3 to 2. Nothing else changes.",
+      "blocks": [
+        "block_1",
+        "block_2"
+      ],
+      "sites": [
+        {
+          "id": "riverside",
+          "name": "Riverside Family Health",
+          "specialties": [
+            "family_medicine",
+            "pediatrics"
+          ],
+          "capacity_per_block": 4,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 0
+        },
+        {
+          "id": "northgate",
+          "name": "Northgate Rehabilitation Center",
+          "specialties": [
+            "rehabilitation",
+            "geriatrics"
+          ],
+          "capacity_per_block": 3,
+          "requires_prerequisite": "ANAT 220",
+          "min_licensure_hours": 120
+        },
+        {
+          "id": "harborview",
+          "name": "Harborview Pediatric Associates",
+          "specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "capacity_per_block": 3,
+          "requires_prerequisite": "PEDS 310",
+          "min_licensure_hours": 140
+        },
+        {
+          "id": "st_augustine",
+          "name": "St. Augustine Health Center",
+          "specialties": [
+            "family_medicine",
+            "geriatrics"
+          ],
+          "capacity_per_block": 2,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 90
+        }
+      ],
+      "students": [
+        {
+          "id": "s01",
+          "name": "Alvarez, R.",
+          "track": "A",
+          "required_specialties": [
+            "family_medicine",
+            "pediatrics"
+          ],
+          "licensure_hours": 176,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s02",
+          "name": "Boateng, K.",
+          "track": "A",
+          "required_specialties": [
+            "family_medicine",
+            "pediatrics"
+          ],
+          "licensure_hours": 148,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s03",
+          "name": "Chen, L.",
+          "track": "A",
+          "required_specialties": [
+            "family_medicine",
+            "pediatrics"
+          ],
+          "licensure_hours": 96,
+          "completed_prerequisites": [
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s04",
+          "name": "Duval, M.",
+          "track": "B",
+          "required_specialties": [
+            "rehabilitation",
+            "geriatrics"
+          ],
+          "licensure_hours": 132,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s05",
+          "name": "Egan, P.",
+          "track": "B",
+          "required_specialties": [
+            "rehabilitation",
+            "geriatrics"
+          ],
+          "licensure_hours": 188,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s06",
+          "name": "Farouk, N.",
+          "track": "B",
+          "required_specialties": [
+            "rehabilitation",
+            "geriatrics"
+          ],
+          "licensure_hours": 136,
+          "completed_prerequisites": [
+            "ANAT 220"
+          ]
+        },
+        {
+          "id": "s07",
+          "name": "Gutierrez, A.",
+          "track": "C",
+          "required_specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "licensure_hours": 168,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s08",
+          "name": "Haddad, S.",
+          "track": "C",
+          "required_specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "licensure_hours": 168,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s09",
+          "name": "Iwu, C.",
+          "track": "C",
+          "required_specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "licensure_hours": 192,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s10",
+          "name": "Jensen, T.",
+          "track": "D",
+          "required_specialties": [
+            "family_medicine",
+            "geriatrics"
+          ],
+          "licensure_hours": 112,
+          "completed_prerequisites": [
+            "ANAT 220"
+          ]
+        },
+        {
+          "id": "s11",
+          "name": "Kowalski, D.",
+          "track": "D",
+          "required_specialties": [
+            "family_medicine",
+            "geriatrics"
+          ],
+          "licensure_hours": 156,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        },
+        {
+          "id": "s12",
+          "name": "Lin, W.",
+          "track": "D",
+          "required_specialties": [
+            "family_medicine",
+            "geriatrics"
+          ],
+          "licensure_hours": 144,
+          "completed_prerequisites": [
+            "ANAT 220",
+            "PEDS 310"
+          ]
+        }
+      ],
+      "travel_minutes": {
+        "s01": {
+          "riverside": 22,
+          "northgate": 31,
+          "harborview": 32,
+          "st_augustine": 16
+        },
+        "s02": {
+          "riverside": 20,
+          "northgate": 10,
+          "harborview": 13,
+          "st_augustine": 16
+        },
+        "s03": {
+          "riverside": 23,
+          "northgate": 40,
+          "harborview": 58,
+          "st_augustine": 33
+        },
+        "s04": {
+          "riverside": 9,
+          "northgate": 37,
+          "harborview": 39,
+          "st_augustine": 37
+        },
+        "s05": {
+          "riverside": 52,
+          "northgate": 39,
+          "harborview": 44,
+          "st_augustine": 20
+        },
+        "s06": {
+          "riverside": 33,
+          "northgate": 13,
+          "harborview": 39,
+          "st_augustine": 22
+        },
+        "s07": {
+          "riverside": 9,
+          "northgate": 25,
+          "harborview": 41,
+          "st_augustine": 34
+        },
+        "s08": {
+          "riverside": 38,
+          "northgate": 61,
+          "harborview": 15,
+          "st_augustine": 24
+        },
+        "s09": {
+          "riverside": 14,
+          "northgate": 12,
+          "harborview": 32,
+          "st_augustine": 32
+        },
+        "s10": {
+          "riverside": 14,
+          "northgate": 11,
+          "harborview": 29,
+          "st_augustine": 23
+        },
+        "s11": {
+          "riverside": 13,
+          "northgate": 51,
+          "harborview": 41,
+          "st_augustine": 21
+        },
+        "s12": {
+          "riverside": 45,
+          "northgate": 17,
+          "harborview": 12,
+          "st_augustine": 42
+        }
+      }
+    },
+    {
+      "id": "L-lecture-4",
+      "role": "Lecture demonstration only, single block, not an SP-2 deliverable",
+      "fixture_note": "This fixture uses two constraints that the SP-2 instances do not: transit_access, where a student with has_car false may only be assigned to a site with transit_reachable true, and cohort_separation, where two students sharing a cohort value may not share a site. It has one block and one required specialty per student.",
+      "blocks": [
+        "block_1"
+      ],
+      "sites": [
+        {
+          "id": "riverside",
+          "name": "Riverside Family Health",
+          "specialties": [
+            "pediatrics",
+            "family_medicine"
+          ],
+          "capacity_per_block": 2,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 0,
+          "transit_reachable": false
+        },
+        {
+          "id": "meridian_community",
+          "name": "Meridian Community Clinic",
+          "specialties": [
+            "family_medicine"
+          ],
+          "capacity_per_block": 1,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 0,
+          "transit_reachable": true
+        },
+        {
+          "id": "northgate",
+          "name": "Northgate Rehabilitation Center",
+          "specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "capacity_per_block": 1,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 120,
+          "transit_reachable": false
+        }
+      ],
+      "students": [
+        {
+          "id": "s1",
+          "name": "Alvarez, R.",
+          "required_specialties": [
+            "pediatrics"
+          ],
+          "licensure_hours": 156,
+          "has_car": true,
+          "cohort": "C1",
+          "completed_prerequisites": []
+        },
+        {
+          "id": "s2",
+          "name": "Boateng, K.",
+          "required_specialties": [
+            "family_medicine"
+          ],
+          "licensure_hours": 132,
+          "has_car": false,
+          "cohort": "C2",
+          "completed_prerequisites": []
+        },
+        {
+          "id": "s3",
+          "name": "Chen, L.",
+          "required_specialties": [
+            "rehabilitation"
+          ],
+          "licensure_hours": 148,
+          "has_car": true,
+          "cohort": "C3",
+          "completed_prerequisites": []
+        },
+        {
+          "id": "s4",
+          "name": "Duval, M.",
+          "required_specialties": [
+            "family_medicine"
+          ],
+          "licensure_hours": 96,
+          "has_car": true,
+          "cohort": "C3",
+          "completed_prerequisites": []
+        }
+      ],
+      "travel_minutes": {
+        "s1": {
+          "riverside": 22,
+          "meridian_community": 14,
+          "northgate": 41
+        },
+        "s2": {
+          "riverside": 55,
+          "meridian_community": 18,
+          "northgate": 63
+        },
+        "s3": {
+          "riverside": 31,
+          "meridian_community": 27,
+          "northgate": 19
+        },
+        "s4": {
+          "riverside": 12,
+          "meridian_community": 35,
+          "northgate": 48
+        }
+      }
+    },
+    {
+      "id": "L-lecture-4-infeasible",
+      "role": "Lecture squad exercise only, not an SP-2 deliverable",
+      "change_from_L_lecture_4": "Riverside Family Health loses its pediatric preceptor and now offers family medicine only. Capacities are unchanged.",
+      "fixture_note": "Same two extra constraints as L-lecture-4: transit_access and cohort_separation.",
+      "blocks": [
+        "block_1"
+      ],
+      "sites": [
+        {
+          "id": "riverside",
+          "name": "Riverside Family Health",
+          "specialties": [
+            "family_medicine"
+          ],
+          "capacity_per_block": 2,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 0,
+          "transit_reachable": false
+        },
+        {
+          "id": "meridian_community",
+          "name": "Meridian Community Clinic",
+          "specialties": [
+            "family_medicine"
+          ],
+          "capacity_per_block": 1,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 0,
+          "transit_reachable": true
+        },
+        {
+          "id": "northgate",
+          "name": "Northgate Rehabilitation Center",
+          "specialties": [
+            "pediatrics",
+            "rehabilitation"
+          ],
+          "capacity_per_block": 1,
+          "requires_prerequisite": null,
+          "min_licensure_hours": 120,
+          "transit_reachable": false
+        }
+      ],
+      "students": [
+        {
+          "id": "s1",
+          "name": "Alvarez, R.",
+          "required_specialties": [
+            "pediatrics"
+          ],
+          "licensure_hours": 156,
+          "has_car": true,
+          "cohort": "C1",
+          "completed_prerequisites": []
+        },
+        {
+          "id": "s2",
+          "name": "Boateng, K.",
+          "required_specialties": [
+            "family_medicine"
+          ],
+          "licensure_hours": 132,
+          "has_car": false,
+          "cohort": "C2",
+          "completed_prerequisites": []
+        },
+        {
+          "id": "s3",
+          "name": "Chen, L.",
+          "required_specialties": [
+            "rehabilitation"
+          ],
+          "licensure_hours": 148,
+          "has_car": true,
+          "cohort": "C3",
+          "completed_prerequisites": []
+        },
+        {
+          "id": "s4",
+          "name": "Duval, M.",
+          "required_specialties": [
+            "family_medicine"
+          ],
+          "licensure_hours": 96,
+          "has_car": true,
+          "cohort": "C3",
+          "completed_prerequisites": []
+        }
+      ],
+      "travel_minutes": {
+        "s1": {
+          "riverside": 22,
+          "meridian_community": 14,
+          "northgate": 41
+        },
+        "s2": {
+          "riverside": 55,
+          "meridian_community": 18,
+          "northgate": 63
+        },
+        "s3": {
+          "riverside": 31,
+          "meridian_community": 27,
+          "northgate": 19
+        },
+        "s4": {
+          "riverside": 12,
+          "meridian_community": 35,
+          "northgate": 48
+        }
+      }
+    }
+  ]
+}
