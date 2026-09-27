@@ -1,0 +1,30 @@
+## Section 7 – Deployment Note
+
+**Owner:** Anoop George  
+**Reviewer:** Asghar Kazmi  
+
+### Deployment Summary
+
+This submission contains the implementation and supporting materials developed for SP-2. The work focused on building and validating the constraint-based solution approach, documenting infeasible cases, and presenting the results in a form that can be more easily understood and demonstrated.
+
+Anoop George served as the primary owner of the implementation. He developed the Jupyter notebook used to model and test the problem, implemented the formulas and constraint logic required for the solution, and prepared the infeasibility note explaining why certain test cases cannot produce a valid solution under the specified constraints. He was responsible for the core technical implementation and ensuring that the solver behavior matched the requirements of SP-2.
+
+Asghar Kazmi served as the reviewer. He reviewed the implementation, formulas, test cases, and infeasibility documentation for consistency with the SP-2 requirements. As part of the review and presentation work, he also created a website-based simulation and representation of the solution. The website provides a more visual and interactive way to demonstrate how the constraint system works and makes the underlying notebook implementation easier to explain during the presentation.
+
+### Components Included
+
+The submission includes the notebook containing the CSP implementation, JSON-based test instances representing feasible and infeasible scenarios, the written infeasibility explanation, and the website simulation/representation used to demonstrate the system.
+
+The notebook serves as the primary computational implementation. The supporting JSON files provide structured inputs that allow the solver to be tested against different scenarios. The infeasibility documentation explains the conditions that prevent a valid assignment from being generated. The website representation complements these materials by providing a clearer visualization of the system's behavior.
+
+### Review and Verification
+
+The implementation was reviewed against the SP-2 requirements to confirm that the constraint logic, formulas, and test cases were represented correctly. Feasible and infeasible inputs were examined to verify that the solver responded appropriately. The website simulation was also checked against the notebook implementation to ensure that it accurately represents the same underlying logic rather than introducing separate behavior.
+
+### Contribution Record
+
+**Anoop George – Owner:**  
+Developed the notebook implementation, created and implemented the required formulas and constraint logic, tested the CSP behavior, and wrote the infeasibility note.
+
+**Asghar Kazmi – Reviewer:**  
+Reviewed the notebook, formulas, test cases, and infeasibility explanation for alignment with SP-2, and developed the website simulation/representation used to visually demonstrate the implementation.
